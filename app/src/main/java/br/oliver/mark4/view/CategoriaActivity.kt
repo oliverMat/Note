@@ -3,6 +3,7 @@ package br.oliver.mark4.view
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.observe
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import br.oliver.mark4.databinding.ActivityCategoriaBinding
@@ -29,12 +30,16 @@ class CategoriaActivity : AppCompatActivity() {
 
         val adapter = CategoriaFragmentAdapter(supportFragmentManager, lifecycle)
 
-        categoriaViewModel.allCategory.observe(owner = this) { categorias ->
-            categorias.forEach() {
+
+        categoriaViewModel.allCategory.observe(this, Observer { it ->
+            if(it.isNotEmpty()){
                 adapter.addFragment(it)
-                binding.tabLayout.addTab(binding.tabLayout.newTab().setText(it.nome))
+                adapter.notifyDataSetChanged()
+
+                it.forEach { binding.tabLayout.addTab(binding.tabLayout.newTab().setText(it.nome))
+                }
             }
-        }
+        })
 
         binding.viewPager2.adapter = adapter
 

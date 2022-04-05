@@ -18,8 +18,9 @@ class CategoriaFragmentAdapter(fragmentManager: FragmentManager, lifecycle: Life
 
     override fun getItemCount(): Int = table.size
 
-    fun addFragment(categoria: Categoria) {
-        table.add(categoria)
+    fun addFragment(categoria: List<Categoria>) {
+        table.addAll(categoria)
+        table
     }
 
 }
