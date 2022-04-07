@@ -10,15 +10,15 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="5dp"
-        android:background="@drawable/fundo_redondo_preto_bottom" >
+        android:background="@drawable/fundo_redondo_preto_bottom"
+        android:elevation="5dp">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_Categoria"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll|enterAlways|snap"
-            android:minHeight="?attr/actionBarSize">
+            android:minHeight="?attr/actionBarSize"
+            app:layout_scrollFlags="scroll|enterAlways|snap">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -30,17 +30,17 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@drawable/fundo_redondo_preto_bottom"
             android:contentDescription="@string/app_name"
-            app:tabGravity="start"
-            app:tabIconTint="@color/colorCinza2"
             app:tabIndicatorAnimationMode="elastic"
+            app:tabIndicatorColor="@color/colorAccent"
+            app:tabMode="scrollable"
+            app:tabTextColor="@color/colorCinza2"
             app:tabIndicatorFullWidth="false"
             app:tabInlineLabel="true"
-            app:tabMode="scrollable"
-            app:tabSelectedTextColor="@color/colorBrancoGelo"
-            app:tabTextColor="@color/colorCinza2">
+            app:tabSelectedTextColor="@color/colorBrancoGelo">
+
 
         </com.google.android.material.tabs.TabLayout>
 

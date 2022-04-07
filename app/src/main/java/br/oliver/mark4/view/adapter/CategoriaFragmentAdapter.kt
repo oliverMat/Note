@@ -1,13 +1,17 @@
 package br.oliver.mark4.view.adapter
 
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
+import androidx.recyclerview.widget.DiffUtil
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import br.oliver.mark4.data.model.Categoria
+import br.oliver.mark4.util.PagerDiffUtil
 import br.oliver.mark4.view.NotaFragment
+import com.google.android.material.tabs.TabLayout
 
-class CategoriaFragmentAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) : FragmentStateAdapter(fragmentManager, lifecycle) {
+class CategoriaFragmentAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
 
     private val table: MutableList<Categoria> = ArrayList()
 
@@ -19,8 +23,13 @@ class CategoriaFragmentAdapter(fragmentManager: FragmentManager, lifecycle: Life
     override fun getItemCount(): Int = table.size
 
     fun addFragment(categoria: List<Categoria>) {
+
+        val callback = PagerDiffUtil(table, categoria)
+        val diff = DiffUtil.calculateDiff(callback)
+        table.clear()
         table.addAll(categoria)
-        table
+        diff.dispatchUpdatesTo(this)
+
     }
 
 }
