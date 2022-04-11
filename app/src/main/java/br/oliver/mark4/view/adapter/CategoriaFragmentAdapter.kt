@@ -2,14 +2,11 @@ package br.oliver.mark4.view.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.DiffUtil
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import br.oliver.mark4.data.model.Categoria
 import br.oliver.mark4.util.PagerDiffUtil
 import br.oliver.mark4.view.NotaFragment
-import com.google.android.material.tabs.TabLayout
 
 class CategoriaFragmentAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
 

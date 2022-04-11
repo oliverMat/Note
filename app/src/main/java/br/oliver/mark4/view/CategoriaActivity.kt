@@ -3,14 +3,12 @@ package br.oliver.mark4.view
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import br.oliver.mark4.databinding.ActivityCategoriaBinding
 import br.oliver.mark4.view.adapter.CategoriaFragmentAdapter
 import br.oliver.mark4.viewModel.CategoriaApplication
 import br.oliver.mark4.viewModel.CategoriaViewModel
 import br.oliver.mark4.viewModel.CategoriaViewModelFactory
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
+import com.google.android.material.tabs.TabLayoutMediator
 
 class CategoriaActivity : AppCompatActivity() {
 
@@ -34,33 +32,16 @@ class CategoriaActivity : AppCompatActivity() {
 
         val adapter = CategoriaFragmentAdapter(this)
 
-        categoriaViewModel.allCategory.observe(this) { it ->
-            if (it.isNotEmpty()) {
-                adapter.addFragment(it)
-                //it.forEach {
-                //    binding.tabLayout.addTab(binding.tabLayout.newTab().setText(it.nome))
-                //}
-            }
-            //binding.tabLayout.addTab(binding.tabLayout.newTab().setText("it.nome"))
+        categoriaViewModel.allCategory.observe(this) {
+            adapter.addFragment(it)
         }
 
         binding.viewPager2.adapter = adapter
 
-        binding.tabLayout.addOnTabSelectedListener(object : OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                binding.viewPager2.currentItem = tab.position
+        TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position ->
+            categoriaViewModel.allCategory.observe(this) {
+                tab.text = it[position].nome
             }
-
-            override fun onTabUnselected(tab: TabLayout.Tab) {}
-            override fun onTabReselected(tab: TabLayout.Tab) {}
-        })
-
-        binding.viewPager2.registerOnPageChangeCallback(object : OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                binding.tabLayout.selectTab(binding.tabLayout.getTabAt(position))
-            }
-        })
-
-
+        }.attach()
     }
 }
