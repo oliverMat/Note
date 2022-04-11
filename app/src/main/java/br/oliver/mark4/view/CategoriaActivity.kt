@@ -1,8 +1,12 @@
 package br.oliver.mark4.view
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import br.oliver.mark4.R
 import br.oliver.mark4.databinding.ActivityCategoriaBinding
 import br.oliver.mark4.view.adapter.CategoriaFragmentAdapter
 import br.oliver.mark4.viewModel.CategoriaApplication
@@ -24,8 +28,15 @@ class CategoriaActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        startComponent()
         initViewPager()
 
+    }
+
+    private fun startComponent() {
+        val toolbar = binding.toolbarCategoria
+        toolbar.title = ""
+        setSupportActionBar(toolbar)
     }
 
     private fun initViewPager(){
@@ -43,5 +54,20 @@ class CategoriaActivity : AppCompatActivity() {
                 tab.text = it[position].nome
             }
         }.attach()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.categoria_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+
+        if (id == R.id.add_categoria){
+
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 }

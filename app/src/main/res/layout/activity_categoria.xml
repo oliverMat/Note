@@ -35,11 +35,11 @@
             android:contentDescription="@string/app_name"
             app:tabIndicatorAnimationMode="elastic"
             app:tabIndicatorColor="@color/colorAccent"
-            app:tabMode="scrollable"
-            app:tabTextColor="@color/colorCinza2"
             app:tabIndicatorFullWidth="false"
             app:tabInlineLabel="true"
-            app:tabSelectedTextColor="@color/colorBrancoGelo">
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/colorBrancoGelo"
+            app:tabTextColor="@color/colorCinza2">
 
 
         </com.google.android.material.tabs.TabLayout>
