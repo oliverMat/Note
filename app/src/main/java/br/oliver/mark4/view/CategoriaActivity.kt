@@ -3,7 +3,10 @@ package br.oliver.mark4.view
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.*
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import br.oliver.mark4.R
@@ -63,6 +66,7 @@ class CategoriaActivity : AppCompatActivity() {
                 tab.text = it[position].nome
             }
         }.attach()
+
     }
 
     private fun addTabBottomSheet() {
@@ -87,11 +91,9 @@ class CategoriaActivity : AppCompatActivity() {
         btnClose.setOnClickListener {
             dialog.dismiss()
         }
-
         dialog.setCancelable(false)
         dialog.setContentView(view)
         dialog.show()
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -102,8 +104,12 @@ class CategoriaActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
 
-        if (id == R.id.add_categoria){
+        if (id == R.id.renomear_tab){
 
+        } else if (id == R.id.deletar_tab) {
+
+            //app ta estourando quando deletar um item na lista
+            categoriaViewModel.deletar(Categoria("a"))
         }
 
         return super.onOptionsItemSelected(item)

@@ -14,8 +14,8 @@ class CategoriaRepository(private val categoriaDao: CategoriaDao) {
         categoriaDao.inserir(categoria)
     }
 
-    //@WorkerThread
-    //suspend fun deletar(categoria: Categoria) {
-    //    categoriaDao.deletarCategoria()
-    //}
+    @WorkerThread
+    suspend fun deletar(categoria: Categoria) {
+        categoriaDao.deletar(categoria)
+    }
 }

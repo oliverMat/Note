@@ -13,6 +13,6 @@ interface CategoriaDao {
     @Query("SELECT * FROM Categoria ORDER BY nome ASC")
     fun getCategorias(): Flow<List<Categoria>>
 
-    //@Delete
-    //suspend fun deletarCategoria()
+    @Delete
+    suspend fun deletar(categoria: Categoria)
 }

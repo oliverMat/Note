@@ -2,10 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
     <item
-        android:id="@+id/add_categoria"
-        android:icon="@drawable/ic_outline_post_add_24"
-        android:title="@string/novaCategoria"
+        android:id="@+id/renomear_tab"
+        android:icon="@drawable/ic_outline_drive_file_rename_outline_24"
+        android:title="@string/renomearTab"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/deletar_tab"
+        android:icon="@drawable/ic_outline_delete_24"
+        android:title="@string/deletarTab"
         app:showAsAction="always" />
 
 </menu>

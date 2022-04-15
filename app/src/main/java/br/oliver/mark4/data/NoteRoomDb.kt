@@ -58,12 +58,8 @@ abstract class NoteRoomDb : RoomDatabase() {
             // Start the app with a clean database every time.
             // Not needed if you only populate on creation.
 
-            var categorias = Categoria("Note")
+            val categorias = Categoria("Note")
             categoriaDao.inserir(categorias)
-
-            categorias = Categoria("casa")
-            categoriaDao.inserir(categorias)
-
 
         }
     }

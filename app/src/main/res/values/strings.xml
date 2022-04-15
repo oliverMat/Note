@@ -3,4 +3,6 @@
     <string name="novaCategoria">Nova Categoria</string>
     <string name="adicionar">Adicionar</string>
     <string name="ok">OK</string>
+    <string name="deletarTab">Deletar</string>
+    <string name="renomearTab">Renomear</string>
 </resources>

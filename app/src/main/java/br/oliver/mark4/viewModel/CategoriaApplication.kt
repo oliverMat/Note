@@ -8,10 +8,10 @@ import kotlinx.coroutines.SupervisorJob
 
 class CategoriaApplication : Application() {
 
-    val applicationScope = CoroutineScope(SupervisorJob())
+    private val applicationScope = CoroutineScope(SupervisorJob())
 
     // Using by lazy so the database and the repository are only created when they're needed
     // rather than when the application starts
-    val database by lazy { NoteRoomDb.getDatabase(this, applicationScope) }
+    private val database by lazy { NoteRoomDb.getDatabase(this, applicationScope) }
     val repository by lazy { CategoriaRepository(database.CategoriaDao()) }
 }

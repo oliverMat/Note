@@ -12,6 +12,10 @@ class CategoriaViewModel (private val repository: CategoriaRepository) : ViewMod
     fun inserir(categoria: Categoria) = viewModelScope.launch {
         repository.inserir(categoria)
     }
+
+    fun deletar(categoria: Categoria) = viewModelScope.launch {
+        repository.deletar(categoria)
+    }
 }
 
 class CategoriaViewModelFactory(private val repository: CategoriaRepository) : ViewModelProvider.Factory {
