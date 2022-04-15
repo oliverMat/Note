@@ -9,7 +9,22 @@
         <item name="android:windowBackground">@color/colorBranco</item>
         <item name="android:statusBarColor">@color/colorPrimary</item>
 
-        <item name="android:navigationBarColor">@color/colorBrancoGelo</item>
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
         <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Theme.Note.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!-- bottom sheet com topo redondo -->
+    <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/fundo_redondo_preto_top</item>
+    </style>
+    <style name="BaseBottomSheetDialog" parent="@style/Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheet</item>
+        <item name="android:statusBarColor">@color/colorPrimary</item>
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
     </style>
 </resources>

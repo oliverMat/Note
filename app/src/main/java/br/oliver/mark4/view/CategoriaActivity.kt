@@ -3,15 +3,17 @@ package br.oliver.mark4.view
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.*
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import br.oliver.mark4.R
+import br.oliver.mark4.data.model.Categoria
 import br.oliver.mark4.databinding.ActivityCategoriaBinding
 import br.oliver.mark4.view.adapter.CategoriaFragmentAdapter
 import br.oliver.mark4.viewModel.CategoriaApplication
 import br.oliver.mark4.viewModel.CategoriaViewModel
 import br.oliver.mark4.viewModel.CategoriaViewModelFactory
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayoutMediator
 
 class CategoriaActivity : AppCompatActivity() {
@@ -37,6 +39,13 @@ class CategoriaActivity : AppCompatActivity() {
         val toolbar = binding.toolbarCategoria
         toolbar.title = ""
         setSupportActionBar(toolbar)
+
+        binding.fabAddTab.setOnClickListener {
+
+            addTabBottomSheet()
+
+        }
+
     }
 
     private fun initViewPager(){
@@ -54,6 +63,35 @@ class CategoriaActivity : AppCompatActivity() {
                 tab.text = it[position].nome
             }
         }.attach()
+    }
+
+    private fun addTabBottomSheet() {
+
+        val dialog = BottomSheetDialog(this, R.style.BaseBottomSheetDialog)
+
+        val view = layoutInflater.inflate(R.layout.bottom_sheet_add_tab, null)
+
+        val btnAdd = view.findViewById<TextView>(R.id.buttonAddTab)
+        val btnClose = view.findViewById<ImageButton>(R.id.buttonCloseTab)
+        val editTab = view.findViewById<EditText>(R.id.editTextAddTab)
+
+        btnAdd.setOnClickListener {
+
+            if (editTab.text.isNotEmpty()) {
+                categoriaViewModel.inserir(Categoria(editTab.text.toString()))
+                dialog.dismiss()
+            }else {
+                Toast.makeText(this,"Digite um nome",Toast.LENGTH_SHORT).show()
+            }
+        }
+        btnClose.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.setCancelable(false)
+        dialog.setContentView(view)
+        dialog.show()
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
