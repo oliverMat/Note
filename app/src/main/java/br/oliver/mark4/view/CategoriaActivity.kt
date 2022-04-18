@@ -58,10 +58,6 @@ class CategoriaActivity : AppCompatActivity() {
 
         categoriaViewModel.allCategory.observe(this) {
             adapter.addFragment(it)
-        }
-
-        categoriaViewModel.allCategory.observe(this) {
-            adapter.addFragment(it)
 
             TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position ->
                 tab.text = adapter.getPositionName(position)

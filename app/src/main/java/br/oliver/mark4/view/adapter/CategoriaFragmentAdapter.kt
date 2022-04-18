@@ -29,8 +29,6 @@ class CategoriaFragmentAdapter(activity: FragmentActivity) : FragmentStateAdapte
 
     }
 
-    fun getPositionName(position: Int): String {
-        return table[position].nome
-    }
+    fun getPositionName(position: Int): String = table[position].nome
 
 }
