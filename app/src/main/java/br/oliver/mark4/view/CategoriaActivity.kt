@@ -18,6 +18,7 @@ import br.oliver.mark4.viewModel.CategoriaViewModel
 import br.oliver.mark4.viewModel.CategoriaViewModelFactory
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayoutMediator
+import java.lang.Exception
 
 class CategoriaActivity : AppCompatActivity() {
 
@@ -59,13 +60,16 @@ class CategoriaActivity : AppCompatActivity() {
             adapter.addFragment(it)
         }
 
-        binding.viewPager2.adapter = adapter
+        categoriaViewModel.allCategory.observe(this) {
+            adapter.addFragment(it)
 
-        TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position ->
-            categoriaViewModel.allCategory.observe(this) {
-                tab.text = it[position].nome
-            }
-        }.attach()
+            TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position ->
+                tab.text = adapter.getPositionName(position)
+            }.attach()
+
+        }
+
+        binding.viewPager2.adapter = adapter
 
     }
 
