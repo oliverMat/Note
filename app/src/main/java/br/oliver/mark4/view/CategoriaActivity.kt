@@ -93,7 +93,7 @@ class CategoriaActivity : AppCompatActivity() {
         val editTab = view.findViewById<EditText>(R.id.editTextAddTab)
 
         if (edit) {
-            editTab.setText(nomeTable)
+            editTab.hint = nomeTable
         }
 
         btnAdd.setOnClickListener {
