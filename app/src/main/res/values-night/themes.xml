@@ -18,6 +18,9 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="ToolbarClaro" parent="Theme.AppCompat.NoActionBar">
+    </style>
+
     <!-- bottom sheet com topo redondo -->
     <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/fundo_redondo_preto_top</item>

@@ -7,12 +7,12 @@
         android:id="@+id/renomear_tab"
         android:icon="@drawable/ic_outline_drive_file_rename_outline_24"
         android:title="@string/renomearTab"
-        app:showAsAction="always" />
+        app:showAsAction="collapseActionView" />
 
     <item
         android:id="@+id/deletar_tab"
         android:icon="@drawable/ic_outline_delete_24"
         android:title="@string/deletarTab"
-        app:showAsAction="always" />
+        app:showAsAction="collapseActionView" />
 
 </menu>
