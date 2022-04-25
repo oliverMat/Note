@@ -10,9 +10,12 @@ interface CategoriaDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun inserir(categoria: Categoria)
 
-    @Query("SELECT * FROM Categoria ORDER BY nome ASC")
-    fun getCategorias(): Flow<List<Categoria>>
+    @Query("UPDATE or IGNORE categoria SET nome=:novoNome WHERE nome=:nomeTable")
+    suspend fun rename(nomeTable: String, novoNome: String)
 
     @Delete
     suspend fun deletar(categoria: Categoria)
+
+    @Query("SELECT * FROM Categoria ORDER BY nome ASC")
+    fun getCategorias(): Flow<List<Categoria>>
 }

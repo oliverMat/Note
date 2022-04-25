@@ -17,12 +17,15 @@ import br.oliver.mark4.viewModel.CategoriaApplication
 import br.oliver.mark4.viewModel.CategoriaViewModel
 import br.oliver.mark4.viewModel.CategoriaViewModelFactory
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.android.material.tabs.TabLayoutMediator
-import java.lang.Exception
 
 class CategoriaActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCategoriaBinding
+
+    private lateinit var nomeTable : String
 
     private val categoriaViewModel: CategoriaViewModel by viewModels {
         CategoriaViewModelFactory((application as CategoriaApplication).repository)
@@ -46,7 +49,7 @@ class CategoriaActivity : AppCompatActivity() {
 
         binding.fabAddTab.setOnClickListener {
 
-            addTabBottomSheet()
+            addTabBottomSheet(false)
 
         }
 
@@ -65,11 +68,21 @@ class CategoriaActivity : AppCompatActivity() {
 
         }
 
+
+        binding.tabLayout.addOnTabSelectedListener(object : OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                nomeTable = tab.text.toString()
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab) {}
+            override fun onTabReselected(tab: TabLayout.Tab) {}
+        })
+
         binding.viewPager2.adapter = adapter
 
     }
 
-    private fun addTabBottomSheet() {
+    private fun addTabBottomSheet(edit: Boolean ) {
 
         val dialog = BottomSheetDialog(this, R.style.BaseBottomSheetDialog)
 
@@ -79,13 +92,23 @@ class CategoriaActivity : AppCompatActivity() {
         val btnClose = view.findViewById<ImageButton>(R.id.buttonCloseTab)
         val editTab = view.findViewById<EditText>(R.id.editTextAddTab)
 
+        if (edit) {
+            editTab.setText(nomeTable)
+        }
+
         btnAdd.setOnClickListener {
 
             if (editTab.text.isNotEmpty()) {
-                categoriaViewModel.inserir(Categoria(editTab.text.toString()))
+
+                if (edit) {
+                    categoriaViewModel.rename(nomeTable, editTab.text.toString())
+                }else {
+                    categoriaViewModel.inserir(Categoria(editTab.text.toString()))
+                }
+
                 dialog.dismiss()
             }else {
-                Toast.makeText(this,"Digite um nome",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,R.string.DigiteUmNome,Toast.LENGTH_SHORT).show()
             }
         }
         btnClose.setOnClickListener {
@@ -106,10 +129,11 @@ class CategoriaActivity : AppCompatActivity() {
 
         if (id == R.id.renomear_tab){
 
+            addTabBottomSheet(true)
+
         } else if (id == R.id.deletar_tab) {
 
-            //app ta estourando quando deletar um item na lista
-            categoriaViewModel.deletar(Categoria("a"))
+            categoriaViewModel.deletar(Categoria(nomeTable))
         }
 
         return super.onOptionsItemSelected(item)

@@ -5,4 +5,5 @@
     <string name="ok">OK</string>
     <string name="deletarTab">Deletar</string>
     <string name="renomearTab">Renomear</string>
+    <string name="DigiteUmNome">Digite um nome</string>
 </resources>

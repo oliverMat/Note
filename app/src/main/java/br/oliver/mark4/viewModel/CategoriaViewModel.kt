@@ -7,15 +7,19 @@ import kotlinx.coroutines.launch
 
 class CategoriaViewModel (private val repository: CategoriaRepository) : ViewModel() {
 
-    val allCategory: LiveData<List<Categoria>> = repository.allCategory.asLiveData()
-
     fun inserir(categoria: Categoria) = viewModelScope.launch {
         repository.inserir(categoria)
+    }
+
+    fun rename(nomeTable: String, novoNome: String) = viewModelScope.launch {
+        repository.rename(nomeTable, novoNome)
     }
 
     fun deletar(categoria: Categoria) = viewModelScope.launch {
         repository.deletar(categoria)
     }
+
+    val allCategory: LiveData<List<Categoria>> = repository.allCategory.asLiveData()
 }
 
 class CategoriaViewModelFactory(private val repository: CategoriaRepository) : ViewModelProvider.Factory {
