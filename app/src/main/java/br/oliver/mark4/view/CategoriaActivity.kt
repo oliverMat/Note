@@ -1,5 +1,6 @@
 package br.oliver.mark4.view
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -8,6 +9,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import br.oliver.mark4.R
 import br.oliver.mark4.data.model.Categoria
@@ -82,7 +84,43 @@ class CategoriaActivity : AppCompatActivity() {
 
     }
 
-    private fun addTabBottomSheet(edit: Boolean ) {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.categoria_menu, menu)
+
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+
+        if (id == R.id.renomear_tab){
+
+            addTabBottomSheet(true)
+            return true
+
+        } else if (id == R.id.deletar_tab) {
+
+            deleteAlerts()
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun deleteAlerts() {
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(R.string.desejaDeletar)
+        builder.setMessage(nomeTable)
+        builder.setCancelable(false)
+        builder.setPositiveButton(R.string.sim) { _: DialogInterface?, _: Int ->  categoriaViewModel.deletar(Categoria(nomeTable)) }
+        builder.setNegativeButton(R.string.nao) { _, _ -> }
+
+        val dialog = builder.create()
+        dialog.show()
+    }
+
+    private fun addTabBottomSheet(edit: Boolean) {
 
         val dialog = BottomSheetDialog(this, R.style.BaseBottomSheetDialog)
 
@@ -117,25 +155,5 @@ class CategoriaActivity : AppCompatActivity() {
         dialog.setCancelable(false)
         dialog.setContentView(view)
         dialog.show()
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.categoria_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-
-        if (id == R.id.renomear_tab){
-
-            addTabBottomSheet(true)
-
-        } else if (id == R.id.deletar_tab) {
-
-            categoriaViewModel.deletar(Categoria(nomeTable))
-        }
-
-        return super.onOptionsItemSelected(item)
     }
 }

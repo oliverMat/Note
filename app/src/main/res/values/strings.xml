@@ -6,4 +6,7 @@
     <string name="deletarTab">Deletar</string>
     <string name="renomearTab">Renomear</string>
     <string name="DigiteUmNome">Digite um nome</string>
+    <string name="nao">Não</string>
+    <string name="sim">Sim</string>
+    <string name="desejaDeletar">Deseja deletar …</string>
 </resources>
