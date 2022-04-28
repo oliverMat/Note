@@ -4,15 +4,9 @@
 
 
     <item
-        android:id="@+id/renomear_tab"
-        android:icon="@drawable/ic_outline_drive_file_rename_outline_24"
-        android:title="@string/renomearTab"
-        app:showAsAction="collapseActionView" />
-
-    <item
-        android:id="@+id/deletar_tab"
-        android:icon="@drawable/ic_outline_delete_24"
-        android:title="@string/deletarTab"
+        android:id="@+id/opcoes_tab"
+        android:icon="@drawable/ic_baseline_drag_indicator_24"
+        android:title="@string/opcoes"
         app:showAsAction="collapseActionView" />
 
 </menu>

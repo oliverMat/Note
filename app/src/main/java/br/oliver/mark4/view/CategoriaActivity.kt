@@ -93,17 +93,12 @@ class CategoriaActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
 
-        if (id == R.id.renomear_tab){
+        if (id == R.id.opcoes_tab){
 
-            addTabBottomSheet(true)
-            return true
-
-        } else if (id == R.id.deletar_tab) {
-
-            deleteAlerts()
+            //addTabBottomSheet(true)
             return true
         }
-
+        
         return super.onOptionsItemSelected(item)
     }
 
