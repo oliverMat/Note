@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import br.oliver.mark4.R
+import br.oliver.mark4.databinding.BottomSheetDialogOpcoesBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class BottomDialogFragmentOpcoes : BottomSheetDialogFragment() {
+
+    private lateinit var binding: BottomSheetDialogOpcoesBinding
 
     private var nomeTable: String? = null
 
@@ -19,12 +21,26 @@ class BottomDialogFragmentOpcoes : BottomSheetDialogFragment() {
 
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        binding = BottomSheetDialogOpcoesBinding.inflate(inflater, container, false)
 
 
+        acoes()
 
-        return inflater.inflate(R.layout.bottom_sheet_dialog_opcoes, container, false)
+
+        return binding.root
     }
+
+    fun acoes() {
+
+        binding.llDeletarTab.setOnClickListener {
+
+
+        }
+
+    }
+
+    
 
     companion object {
         const val TAG = "BottomSheet"
