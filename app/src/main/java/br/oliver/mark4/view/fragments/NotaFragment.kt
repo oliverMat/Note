@@ -1,4 +1,4 @@
-package br.oliver.mark4.view
+package br.oliver.mark4.view.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

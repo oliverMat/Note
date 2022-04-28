@@ -15,6 +15,7 @@ import br.oliver.mark4.R
 import br.oliver.mark4.data.model.Categoria
 import br.oliver.mark4.databinding.ActivityCategoriaBinding
 import br.oliver.mark4.view.adapter.CategoriaFragmentAdapter
+import br.oliver.mark4.view.fragments.BottomDialogFragmentOpcoes
 import br.oliver.mark4.viewModel.CategoriaApplication
 import br.oliver.mark4.viewModel.CategoriaViewModel
 import br.oliver.mark4.viewModel.CategoriaViewModelFactory
@@ -95,10 +96,13 @@ class CategoriaActivity : AppCompatActivity() {
 
         if (id == R.id.opcoes_tab){
 
-            //addTabBottomSheet(true)
+            val modalBottomSheet : BottomDialogFragmentOpcoes =
+            BottomDialogFragmentOpcoes.newInstance(nomeTable)
+            modalBottomSheet.show(supportFragmentManager, BottomDialogFragmentOpcoes.TAG)
+
             return true
         }
-        
+
         return super.onOptionsItemSelected(item)
     }
 
