@@ -1,25 +1,18 @@
 package br.oliver.mark4.view
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import br.oliver.mark4.R
-import br.oliver.mark4.data.model.Categoria
 import br.oliver.mark4.databinding.ActivityCategoriaBinding
 import br.oliver.mark4.view.adapter.CategoriaFragmentAdapter
-import br.oliver.mark4.view.fragments.BottomDialogFragmentOpcoes
+import br.oliver.mark4.view.fragments.BDFragmentInserir
+import br.oliver.mark4.view.fragments.BDFragmentOpcoes
 import br.oliver.mark4.viewModel.CategoriaApplication
 import br.oliver.mark4.viewModel.CategoriaViewModel
 import br.oliver.mark4.viewModel.CategoriaViewModelFactory
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.android.material.tabs.TabLayoutMediator
@@ -52,10 +45,11 @@ class CategoriaActivity : AppCompatActivity() {
 
         binding.fabAddTab.setOnClickListener {
 
-            addTabBottomSheet(false)
+            val modalBottomSheet : BDFragmentInserir =
+                BDFragmentInserir.newInstance("")
+            modalBottomSheet.show(supportFragmentManager, BDFragmentInserir.TAG)
 
         }
-
     }
 
     private fun initViewPager(){
@@ -70,7 +64,6 @@ class CategoriaActivity : AppCompatActivity() {
             }.attach()
 
         }
-
 
         binding.tabLayout.addOnTabSelectedListener(object : OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
@@ -96,50 +89,13 @@ class CategoriaActivity : AppCompatActivity() {
 
         if (id == R.id.opcoes_tab){
 
-            val modalBottomSheet : BottomDialogFragmentOpcoes =
-            BottomDialogFragmentOpcoes.newInstance(nomeTable)
-            modalBottomSheet.show(supportFragmentManager, BottomDialogFragmentOpcoes.TAG)
+            val modalBottomSheet : BDFragmentOpcoes =
+            BDFragmentOpcoes.newInstance(nomeTable)
+            modalBottomSheet.show(supportFragmentManager, BDFragmentOpcoes.TAG)
 
             return true
         }
 
         return super.onOptionsItemSelected(item)
-    }
-
-    private fun addTabBottomSheet(edit: Boolean) {
-
-        val dialog = BottomSheetDialog(this, R.style.BaseBottomSheetDialog)
-
-        val view = layoutInflater.inflate(R.layout.bottom_sheet_add_tab, null)
-
-        val btnAdd = view.findViewById<TextView>(R.id.buttonAddTab)
-        val btnClose = view.findViewById<ImageButton>(R.id.buttonCloseTab)
-        val editTab = view.findViewById<EditText>(R.id.editTextAddTab)
-
-        if (edit) {
-            editTab.hint = nomeTable
-        }
-
-        btnAdd.setOnClickListener {
-
-            if (editTab.text.isNotEmpty()) {
-
-                if (edit) {
-                    categoriaViewModel.rename(nomeTable, editTab.text.toString())
-                }else {
-                    categoriaViewModel.inserir(Categoria(editTab.text.toString()))
-                }
-
-                dialog.dismiss()
-            }else {
-                Toast.makeText(this,R.string.DigiteUmNome,Toast.LENGTH_SHORT).show()
-            }
-        }
-        btnClose.setOnClickListener {
-            dialog.dismiss()
-        }
-        dialog.setCancelable(false)
-        dialog.setContentView(view)
-        dialog.show()
     }
 }

@@ -5,7 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.viewModels
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import br.oliver.mark4.R
@@ -14,9 +17,10 @@ import br.oliver.mark4.databinding.BottomSheetDialogOpcoesBinding
 import br.oliver.mark4.viewModel.CategoriaApplication
 import br.oliver.mark4.viewModel.CategoriaViewModel
 import br.oliver.mark4.viewModel.CategoriaViewModelFactory
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class BottomDialogFragmentOpcoes : BottomSheetDialogFragment() {
+class BDFragmentOpcoes : BottomSheetDialogFragment() {
 
     private val categoriaViewModel: CategoriaViewModel by viewModels {
         CategoriaViewModelFactory((requireActivity().application as CategoriaApplication).repository)
@@ -42,6 +46,15 @@ class BottomDialogFragmentOpcoes : BottomSheetDialogFragment() {
             deleteAlerts()
         }
 
+        binding.llRenomearTab.setOnClickListener {
+
+            val modalBottomSheet : BDFragmentInserir =
+                BDFragmentInserir.newInstance(nomeTable)
+            modalBottomSheet.show(requireActivity().supportFragmentManager, BDFragmentInserir.TAG)
+
+            dismiss()
+        }
+
         return binding.root
     }
 
@@ -65,8 +78,8 @@ class BottomDialogFragmentOpcoes : BottomSheetDialogFragment() {
     companion object {
         const val TAG = "BottomSheet"
 
-        fun newInstance(nomeTabela: String?): BottomDialogFragmentOpcoes {
-            val fragment = BottomDialogFragmentOpcoes()
+        fun newInstance(nomeTabela: String?): BDFragmentOpcoes {
+            val fragment = BDFragmentOpcoes()
             val args = Bundle()
             args.putString(TAG, nomeTabela)
             fragment.arguments = args
