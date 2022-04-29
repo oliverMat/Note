@@ -10,4 +10,5 @@
     <string name="sim">Sim</string>
     <string name="desejaDeletar">Deseja deletar …</string>
     <string name="opcoes">Opções</string>
+    <string name="Note">\"Note\" não pode ser alterado!</string>
 </resources>

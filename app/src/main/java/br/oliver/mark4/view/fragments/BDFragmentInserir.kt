@@ -54,7 +54,7 @@ class BDFragmentInserir : BottomSheetDialogFragment() {
 
     private fun addTabBottomSheet() {
 
-        if (binding.editTextAddTab.text.isNotEmpty()) {
+        if (binding.editTextAddTab.text.trim().isNotEmpty()) {
 
             if (nomeTable.isNotEmpty()){
                 categoriaViewModel.rename(nomeTable, binding.editTextAddTab.text.toString())

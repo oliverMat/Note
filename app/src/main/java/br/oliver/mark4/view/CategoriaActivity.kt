@@ -3,6 +3,7 @@ package br.oliver.mark4.view
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import br.oliver.mark4.R
@@ -89,9 +90,13 @@ class CategoriaActivity : AppCompatActivity() {
 
         if (id == R.id.opcoes_tab){
 
-            val modalBottomSheet : BDFragmentOpcoes =
-            BDFragmentOpcoes.newInstance(nomeTable)
-            modalBottomSheet.show(supportFragmentManager, BDFragmentOpcoes.TAG)
+            if (nomeTable == "Note") {
+                Toast.makeText(this, R.string.Note, Toast.LENGTH_SHORT).show()
+            }else {
+                val modalBottomSheet : BDFragmentOpcoes =
+                    BDFragmentOpcoes.newInstance(nomeTable)
+                modalBottomSheet.show(supportFragmentManager, BDFragmentOpcoes.TAG)
+            }
 
             return true
         }
