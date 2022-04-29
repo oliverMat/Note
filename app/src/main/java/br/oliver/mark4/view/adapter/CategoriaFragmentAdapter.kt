@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import br.oliver.mark4.data.model.Categoria
 import br.oliver.mark4.util.PagerDiffUtil
-import br.oliver.mark4.view.fragments.NotaFragment
+import br.oliver.mark4.view.fragments.FragmentNota
 
 class CategoriaFragmentAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
 
@@ -14,7 +14,7 @@ class CategoriaFragmentAdapter(activity: FragmentActivity) : FragmentStateAdapte
 
     override fun createFragment(position: Int): Fragment {
         val listTable: Categoria = table[position]
-        return NotaFragment.newInstance(listTable.nome)
+        return FragmentNota.newInstance(listTable.nome)
     }
 
     override fun getItemCount(): Int = table.size

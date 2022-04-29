@@ -36,6 +36,7 @@
             android:contentDescription="@string/app_name"
             app:tabIndicatorAnimationMode="elastic"
             app:tabIndicatorColor="@color/colorAccent"
+            app:tabIconTint="@color/colorCinza2"
             app:tabIndicatorFullWidth="false"
             app:tabInlineLabel="true"
             app:tabMode="scrollable"
@@ -54,18 +55,5 @@
         android:layout_marginBottom="50dp"
         android:background="@color/colorBrancoGelo"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAddTab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_margin="16dp"
-        android:clickable="true"
-        app:backgroundTint="@color/colorBranco"
-        app:fabSize="mini"
-        app:srcCompat="@drawable/ic_outline_post_add_24"
-        android:focusable="true"
-        android:contentDescription="TODO" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

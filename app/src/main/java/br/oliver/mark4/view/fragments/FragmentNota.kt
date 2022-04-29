@@ -5,11 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import br.oliver.mark4.R
-import br.oliver.mark4.databinding.BottomSheetAddTabBinding
 import br.oliver.mark4.databinding.FragmentNoteBinding
 
-class NotaFragment : Fragment() {
+class FragmentNota : Fragment() {
 
     private lateinit var nomeTable: String
 
@@ -32,8 +30,8 @@ class NotaFragment : Fragment() {
 
     companion object {
         private const val ARG = "table"
-        fun newInstance(nomeTabela: String?): NotaFragment {
-            val fragment = NotaFragment()
+        fun newInstance(nomeTabela: String?): FragmentNota {
+            val fragment = FragmentNota()
             val args = Bundle()
             args.putString(ARG, nomeTabela)
             fragment.arguments = args

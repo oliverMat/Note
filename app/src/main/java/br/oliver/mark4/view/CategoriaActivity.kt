@@ -24,6 +24,8 @@ class CategoriaActivity : AppCompatActivity() {
 
     private lateinit var nomeTable : String
 
+    private var position : Int = 0
+
     private val categoriaViewModel: CategoriaViewModel by viewModels {
         CategoriaViewModelFactory((application as CategoriaApplication).repository)
     }
@@ -44,13 +46,6 @@ class CategoriaActivity : AppCompatActivity() {
         toolbar.title = ""
         setSupportActionBar(toolbar)
 
-        binding.fabAddTab.setOnClickListener {
-
-            val modalBottomSheet : BDFragmentInserir =
-                BDFragmentInserir.newInstance("")
-            modalBottomSheet.show(supportFragmentManager, BDFragmentInserir.TAG)
-
-        }
     }
 
     private fun initViewPager(){
@@ -62,13 +57,28 @@ class CategoriaActivity : AppCompatActivity() {
 
             TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position ->
                 tab.text = adapter.getPositionName(position)
+
             }.attach()
+            binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.novaLista).setIcon(R.drawable.ic_round_add_24))
 
         }
 
         binding.tabLayout.addOnTabSelectedListener(object : OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 nomeTable = tab.text.toString()
+
+                if (nomeTable == getString(R.string.novaLista)) {
+
+                    binding.tabLayout.selectTab(binding.tabLayout.getTabAt(position))
+
+                    val modalBottomSheet : BDFragmentInserir =
+                        BDFragmentInserir.newInstance("")
+                    modalBottomSheet.show(supportFragmentManager, BDFragmentInserir.TAG)
+
+                }else {
+                    position = tab.position
+                }
+
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {}
