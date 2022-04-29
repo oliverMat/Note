@@ -53,11 +53,11 @@ class NotaFragment : Fragment() {
     }
 
     companion object {
-        private const val ARG_PARAM1 = "param1"
+        private const val ARG = "table"
         fun newInstance(nomeTabela: String?): NotaFragment {
             val fragment = NotaFragment()
             val args = Bundle()
-            args.putString(ARG_PARAM1, nomeTabela)
+            args.putString(ARG, nomeTabela)
             fragment.arguments = args
             return fragment
         }

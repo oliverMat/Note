@@ -5,10 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import br.oliver.mark4.R
@@ -17,7 +13,6 @@ import br.oliver.mark4.databinding.BottomSheetDialogOpcoesBinding
 import br.oliver.mark4.viewModel.CategoriaApplication
 import br.oliver.mark4.viewModel.CategoriaViewModel
 import br.oliver.mark4.viewModel.CategoriaViewModelFactory
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class BDFragmentOpcoes : BottomSheetDialogFragment() {
@@ -46,7 +41,7 @@ class BDFragmentOpcoes : BottomSheetDialogFragment() {
             deleteAlerts()
         }
 
-        binding.llRenomearTab.setOnClickListener {
+        binding.llRenomearTab.setOnClickListener { //caso queira renomear a tabela, é passado o nome para o proximo fragment
 
             val modalBottomSheet : BDFragmentInserir =
                 BDFragmentInserir.newInstance(nomeTable)

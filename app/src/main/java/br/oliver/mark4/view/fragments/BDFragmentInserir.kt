@@ -44,7 +44,7 @@ class BDFragmentInserir : BottomSheetDialogFragment() {
             addTabBottomSheet()
         }
 
-        if (nomeTable.isNotEmpty()){
+        if (nomeTable.isNotEmpty()){//verifica se contem um nome caso tenha ele insereo o nome no hint
             binding.editTextAddTab.hint = nomeTable
         }
 
@@ -56,7 +56,8 @@ class BDFragmentInserir : BottomSheetDialogFragment() {
 
         if (binding.editTextAddTab.text.trim().isNotEmpty()) {
 
-            if (nomeTable.isNotEmpty()){
+            if (nomeTable.isNotEmpty()){// se o nome da tabela for vazio ele vai inserir uma nova
+
                 categoriaViewModel.rename(nomeTable, binding.editTextAddTab.text.toString())
             }else {
                 categoriaViewModel.inserir(Categoria(binding.editTextAddTab.text.toString()))

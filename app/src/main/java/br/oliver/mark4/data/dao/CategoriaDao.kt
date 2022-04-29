@@ -16,6 +16,6 @@ interface CategoriaDao {
     @Delete
     suspend fun deletar(categoria: Categoria)
 
-    @Query("SELECT * FROM Categoria ORDER BY nome ASC")
+    @Query("SELECT * FROM Categoria")
     fun getCategorias(): Flow<List<Categoria>>
 }
