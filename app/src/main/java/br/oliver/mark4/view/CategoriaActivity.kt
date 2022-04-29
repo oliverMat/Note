@@ -106,19 +106,6 @@ class CategoriaActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun deleteAlerts() {
-
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle(R.string.desejaDeletar)
-        builder.setMessage(nomeTable)
-        builder.setCancelable(false)
-        builder.setPositiveButton(R.string.sim) { _: DialogInterface?, _: Int ->  categoriaViewModel.deletar(Categoria(nomeTable)) }
-        builder.setNegativeButton(R.string.nao) { _, _ -> }
-
-        val dialog = builder.create()
-        dialog.show()
-    }
-
     private fun addTabBottomSheet(edit: Boolean) {
 
         val dialog = BottomSheetDialog(this, R.style.BaseBottomSheetDialog)
